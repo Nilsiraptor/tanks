@@ -1,5 +1,5 @@
 import pyglet
 import windows
 
-window = windows.MenuWindow()
+window = windows.Window()
 pyglet.app.run()
