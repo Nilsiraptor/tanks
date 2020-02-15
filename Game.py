@@ -5,7 +5,7 @@ import pyglet
 from Button import Button
 
 class Window(pygletWindow):
-    def __init__(self, menuLoop):
+    def __init__(self, gameLoop):
         super(Window, self).__init__()
 
         super(Window, self).set_fullscreen(True)
