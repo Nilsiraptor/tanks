@@ -13,7 +13,7 @@ class Window(pygletWindow):
         self.background = pyglet.image.load("textures/background.png")
 
         self.gameLoop = gameLoop
-        self.buttons = [Button(0, 0, 0, 0) for i in range(3)]
+        self.buttons = [Button(960 - 300, 100 + i*100, 600, 50, "textures/button.png") for i in range(3)]
 
     def on_draw(self):
         self.background.blit(0, 0, 0)
