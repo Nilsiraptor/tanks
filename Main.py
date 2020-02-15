@@ -1,13 +1,9 @@
 import pyglet
-import Game
+import GUI
 
-i = 0
 def gameLoop(dt):
-    global i
-    i += 1
-    if i%60 == 0:
-        print(i//60)
+    print("Game started!")
 
-window = Game.Window(gameLoop)
-#pyglet.clock.schedule_interval(menuLoop, 1/60)
+window = GUI.Window(gameLoop)
+
 pyglet.app.run()
