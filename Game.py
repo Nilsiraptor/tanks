@@ -28,5 +28,6 @@ class Window(pygletWindow):
 
     def on_mouse_press(self, x, y, button, modifiers):
         if button == mouse.LEFT:
+            pass
             #print("clicked")
-            pyglet.clock.schedule_interval(self.gameLoop, 1/60)
+            #pyglet.clock.schedule_interval(self.gameLoop, 1/60)
