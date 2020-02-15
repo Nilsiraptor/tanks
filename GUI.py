@@ -11,12 +11,16 @@ class Window(pyglet.window.Window):
         self.background = pyglet.image.load("textures/background.png")
 
         self.gameLoop = gameLoop
-        self.buttons = [Button(960 - 300, 100 + i*100, 600, 50, "textures/button.png") for i in range(3)]
+
+        self.buttonExit = Button(660, 100, 600, 50, "textures/button.png")
+        self.buttonStart = Button(660, 500, 600, 50, "textures/button.png")
+        self.buttonSettings = Button(660, 300, 600, 50, "textures/button.png")
 
     def on_draw(self):
         self.background.blit(0, 0, 0)
-        for b in self.buttons:
-            b.draw()
+        self.buttonExit.draw()
+        self.buttonStart.draw()
+        self.buttonSettings.draw()
 
     def on_key_press(self, symbol, modifier):
         if symbol == key.A:
@@ -26,9 +30,10 @@ class Window(pyglet.window.Window):
 
     def on_mouse_press(self, x, y, button, modifiers):
         if button == mouse.LEFT:
-            pass
-            #print("clicked")
-            #pyglet.clock.schedule_interval(self.gameLoop, 1/60)
+            if self.buttonExit.is_clicked(x, y):
+                pyglet.app.exit()
+            elif self.buttonStart.is_clicked(x, y):
+                pyglet.clock.schedule_interval(self.gameLoop, 1/60)
 
 class Button():
     def __init__(self, x, y, width, height, texture=None):
@@ -45,3 +50,6 @@ class Button():
     def draw(self):
         if self.texture != None:
             self.texture.blit(self.x, self.y, 0, self.width, self.height)
+
+    def is_clicked(self, x, y):
+        return (x > self.x and x < self.x+self.width) and (y > self.y and y < self.y + self.height)
