@@ -2,21 +2,31 @@ from pyglet.window import Window as pygletWindow
 from pyglet.window import key
 from pyglet.window import mouse
 import pyglet
+from Button import Button
 
 class Window(pygletWindow):
     def __init__(self, menuLoop):
         super(Window, self).__init__()
 
-        self.menuLoop = menuLoop
+        super(Window, self).set_fullscreen(True)
+
+        self.background = pyglet.image.load("textures/background.png")
+
+        self.gameLoop = gameLoop
+        self.buttons = [Button(0, 0, 0, 0) for i in range(3)]
 
     def on_draw(self):
-        pass
+        self.background.blit(0, 0, 0)
+        for b in self.buttons:
+            b.draw()
 
     def on_key_press(self, symbol, modifier):
         if symbol == key.A:
             print("True")
+        elif symbol == key.ESCAPE:
+            pyglet.app.exit()
 
     def on_mouse_press(self, x, y, button, modifiers):
         if button == mouse.LEFT:
             #print("clicked")
-            pyglet.clock.schedule_interval(self.menuLoop, 1/60)
+            pyglet.clock.schedule_interval(self.gameLoop, 1/60)
